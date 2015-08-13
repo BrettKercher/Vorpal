@@ -1,0 +1,48 @@
+<form role="form" method="post" class="form-horizontal">
+  <div class="page-header">
+    <div class="pull-right">
+      <button type="button" class="btn btn-large btn-danger">Delete</button>
+    </div>
+    <h1>Profile</h1>
+    <h4> {{ .Stats.Kills }} / {{ .Stats.Deaths }} / {{ .Stats.SelfDestructs }}</h4>
+  </div>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title">Details</h3>
+    </div>
+    <div class="panel-body">
+      <div class="form-horizontal">
+        <div class="form-group">
+          <label for="firstName" class="col-xs-4 col-sm-2 control-label">First Name</label>
+          <div class="col-xs-8 col-sm-10">
+            <input type="text" class="form-control" id="firstName" value="{{ .Player.FirstName }}" name="firstName">
+            <input type="hidden" id="firstNameOriginal" name="firstNameOriginal" value="{{ .Player.FirstName }}"/>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="lastName" class="col-xs-4 col-sm-2 control-label">Last Name</label>
+          <div class="col-xs-8 col-sm-10">
+            <input type="text" class="form-control" id="lastName" value="{{ .Player.LastName }}" name="lastName">
+            <input type="hidden" id="lastNameOriginal" name="lastNameOriginal" value="{{ .Player.LastName }}"/>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="tag" class="col-xs-4 col-sm-2 control-label">Tag</label>
+          <div class="col-xs-8 col-sm-10">
+            <input type="text" class="form-control" id="tag" value="{{ .Player.Tag }}" name="tag">
+            <input type="hidden" id="tagOriginal" name="tagOriginal" value="{{ .Player.Tag }}"/>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="email" class="col-xs-4 col-sm-2 control-label">Email</label>
+          <div class="col-xs-8 col-sm-10">
+            <input type="text" class="form-control" id="email" value="{{ .Player.Email }}" name="email" disabled>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div style="margin-bottom:2em">
+    <button type="submit" class="btn btn-large btn-primary btn-block">Save</button>
+  </div>
+</form>

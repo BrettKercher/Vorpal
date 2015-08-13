@@ -1,0 +1,59 @@
+
+<form role="form" method="post" class="form-horizontal">
+  <div class="page-header">
+    <h1>Game <small>#{{ .Id }}</small></h1>
+  </div>
+  <div class="panel panel-default">
+    <div class="panel-body">
+      <div class="form-group">
+        <label for="stage" class="col-xs-4 col-sm-1 control-label">Stage</label>
+        <div class="col-xs-8 col-sm-11">
+          <p class="form-control" id="stage">{{ .Stage.Name }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  {{ range .PlayerStats }}
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title">Player {{ .Number }} <small>Rank #{{ .Rank }}</small></h3>
+    </div>
+    <div class="panel-body">
+      <div class="form-horizontal">
+        <div class="form-group">
+          <label for="playerName-{{ .Number }}" class="col-xs-4 col-sm-2 control-label">Name</label>
+          <div class="col-xs-8 col-sm-10">
+            <p class="form-control" id="playerName-{{ .Number }}">{{ .Player.FirstName }} {{ .Player.LastName }}</p>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="character-{{ .Number }}" class="col-xs-4 col-sm-2 control-label">Character</label>
+          <div class="col-xs-8 col-sm-10">
+            <p class="form-control" id="character-{{ .Number }}">{{ .Character.Name }}</p>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="col-xs-6 col-sm-2">
+            <label for="kills-{{ .Number }}" class="control-label">Kills</label>
+          </div>
+          <div class="col-xs-6 col-sm-2">
+            <p class="form-control" id="kills-{{ .Number }}">{{ .Kills }}</p>
+          </div>
+          <div class="col-xs-6 col-sm-2">
+            <label for="deaths-{{ .Number }}" class="control-label">Deaths</label>
+          </div>
+          <div class="col-xs-6 col-sm-2">
+            <p class="form-control" id="deaths-{{ .Number }}">{{ .Deaths }}</p>
+          </div>
+          <div class="col-xs-6 col-sm-2">
+            <label for="SDs-{{ .Number }}">Self-Destructs</label>
+          </div>
+          <div class="col-xs-6 col-sm-2">
+            <p class="form-control" id="SDs-{{ .Number }}">{{ .SelfDestructs }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  {{ end }}
+</form>

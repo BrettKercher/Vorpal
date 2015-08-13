@@ -1,0 +1,364 @@
+
+<form role="form" method="post" class="form-horizontal">
+  <div class="panel panel-default">
+    <div class="panel-body">
+      <div class="form-group">
+        <label for="stage" class="col-xs-4 col-sm-1 control-label">Select Stage</label>
+        <div class="col-xs-8 col-sm-6">
+          <select class="form-control" id="stage" name="stage">
+            {{ range .Stages }}
+            <option>{{ .Name }}</option>
+            {{ end }}
+          </select>
+        </div>
+        <div class="col-xs-12 col-sm-1" style="padding:0.5em"></div>
+        <label class="col-xs-5 col-sm-1 control-label" for="playerCount">Player Number</label>
+        <div class="btn-group col-xs-7 col-sm-3 player-count" id="playerCount">
+          <button id="players-two" type="button" class="btn btn-default" style="width:33%">2</button>
+          <button id="players-three" type="button" class="btn btn-default" style="width:33%">3</button>
+          <button id="players-four" type="button" class="btn btn-default" style="width:33%">4</button>
+        </div>
+        <input type="hidden" id="player-count-holder" name="playerCount"/>
+      </div>
+    </div>
+  </div>
+<!--PLAYER 1-->
+  <div class="panel panel-default" id="player-one-div">
+    <div class="panel-heading">
+      <h3 class="panel-title">Player 1</h3>
+    </div>
+    <div class="panel-body">
+      <div class="form-horizontal">
+        <div class="form-group">
+          <label for="player1" class="col-xs-4 col-sm-2 control-label">Select Player</label>
+          <div class="col-xs-8 col-sm-10">
+            <select class="form-control" id="player1" name="playerOneId">
+              {{ range .Players }}
+              <option value="{{ .Id }}">{{ .FirstName }} {{ .LastName }}</option>
+              {{ end }}
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="p1Character" class="col-xs-4 col-sm-2 control-label">Select Character</label>
+          <div class="col-xs-4 col-sm-8">
+            <select class="form-control" id="p1Character" name="characterOneId">
+              {{ range .Characters }}
+              <option value="{{ .Id }}">{{ .Name }}</option>
+              {{ end }}
+            </select>
+          </div>
+          <div class="checkbox col-xs-4 col-sm-2">
+            <label>
+              <input type="checkbox" id="isP1Random"> Random
+              <input type="hidden" id="playerOneRandom" name="isP1Random" value="false"/>
+            </label>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-xs-4 col-sm-2 control-label" for="p1Rank">Rank</label>
+          <div class="btn-group col-xs-8 col-sm-10" id="p1Rank" name="p1Rank">
+            <label class="radio-inline"><input type="radio" value="1" name="optradio1">1&nbsp;</label>
+            <label class="radio-inline"><input type="radio" value="2" name="optradio1">2&nbsp;</label>
+            <label class="radio-inline"><input type="radio" value="3" name="optradio1">3&nbsp;</label>
+            <label class="radio-inline"><input type="radio" value="4" name="optradio1">4&nbsp;</label>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="col-xs-12 col-sm-4">
+            <label class="control-label" for="p1Kills">Kills</label>
+            <div class="input-group input-group-md">
+    	        <span class="input-group-btn">
+                <button type="button" id="p1KillsMinus" class="btn btn-default">-</button>
+              </span>
+              <input type="text" class="form-control text-center" id="p1Kills" value="0" name="p1Kills">
+              <span class="input-group-btn">
+                <button type="button" id="p1KillsPlus" class="btn btn-default">+</button>
+              </span>
+            </div>
+          </div>
+          <div class="col-xs-12 col-sm-4">
+            <label class="control-label" for="p1Deaths">Deaths</label>
+            <div class="input-group input-group-md">
+              <span class="input-group-btn">
+                <button type="button" id="p1DeathsMinus" class="btn btn-default">-</button>
+              </span>
+              <input type="text" class="form-control text-center" id="p1Deaths" value="0" name="p1Deaths">
+              <span class="input-group-btn">
+                <button type="button" id="p1DeathsPlus" class="btn btn-default">+</button>
+              </span>
+            </div>
+          </div>
+          <div class="col-xs-12 col-sm-4">
+            <label class="control-label" for="p1SDs">Self-Destructs</label>
+            <div class="input-group input-group-md">
+              <span class="input-group-btn">
+                <button type="button" id="p1SDsMinus" class="btn btn-default">-</button>
+              </span>
+              <input type="text" class="form-control text-center" id="p1SDs" value="0" name="p1SDs">
+              <span class="input-group-btn">
+                <button type="button" id="p1SDsPlus" class="btn btn-default">+</button>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<!--PLAYER 2-->
+  <div class="panel panel-default" id="player-two-div">
+    <div class="panel-heading">
+      <h3 class="panel-title">Player 2</h3>
+    </div>
+    <div class="panel-body">
+      <div class="form-horizontal">
+        <div class="form-group">
+          <label for="player2" class="col-xs-4 col-sm-2 control-label">Select Player</label>
+          <div class="col-xs-8 col-sm-10">
+            <select class="form-control" id="player2" name="playerTwoId">
+              {{ range .Players }}
+              <option value="{{ .Id }}">{{ .FirstName }} {{ .LastName }}</option>
+              {{ end }}
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="p2Character" class="col-xs-4 col-sm-2 control-label">Select Character</label>
+          <div class="col-xs-4 col-sm-8">
+            <select class="form-control" id="p2Character" name="characterTwoId">
+              {{ range .Characters }}
+              <option value="{{ .Id }}">{{ .Name }}</option>
+              {{ end }}
+            </select>
+          </div>
+          <div class="checkbox col-xs-4 col-sm-2">
+            <label>
+              <input type="checkbox" id="isP2Random"> Random
+              <input type="hidden" id="playerTwoRandom" name="isP2Random" value="false"/>
+            </label>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-xs-4 col-sm-2 control-label" for="p2Rank">Rank</label>
+          <div class="btn-group col-xs-8 col-sm-10" id="p2Rank" name="p2Rank">
+            <label class="radio-inline"><input type="radio" value="1" name="optradio2">1&nbsp;</label>
+            <label class="radio-inline"><input type="radio" value="2" name="optradio2">2&nbsp;</label>
+            <label class="radio-inline"><input type="radio" value="3" name="optradio2">3&nbsp;</label>
+            <label class="radio-inline"><input type="radio" value="4" name="optradio2">4&nbsp;</label>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="col-xs-12 col-sm-4">
+            <label class="control-label" for="p2Kills">Kills</label>
+            <div class="input-group input-group-md">
+              <span class="input-group-btn">
+                <button type="button" id="p2KillsMinus" class="btn btn-default">-</button>
+              </span>
+              <input type="text" class="form-control text-center" id="p2Kills" value="0" name="p2Kills">
+              <span class="input-group-btn">
+                <button type="button" id="p2KillsPlus" class="btn btn-default">+</button>
+              </span>
+            </div>
+          </div>
+          <div class="col-xs-12 col-sm-4">
+            <label class="control-label" for="p2Deaths">Deaths</label>
+            <div class="input-group input-group-md">
+              <span class="input-group-btn">
+                <button type="button" id="p2DeathsMinus" class="btn btn-default">-</button>
+              </span>
+              <input type="text" class="form-control text-center" id="p2Deaths" value="0" name="p2Deaths">
+              <span class="input-group-btn">
+                <button type="button" id="p2DeathsPlus" class="btn btn-default">+</button>
+              </span>
+            </div>
+          </div>
+          <div class="col-xs-12 col-sm-4">
+            <label class="control-label" for="p2SDs">Self-Destructs</label>
+            <div class="input-group input-group-md">
+              <span class="input-group-btn">
+                <button type="button" id="p2SDsMinus" class="btn btn-default">-</button>
+              </span>
+              <input type="text" class="form-control text-center" id="p2SDs" value="0" name="p2SDs">
+              <span class="input-group-btn">
+                <button type="button" id="p2SDsPlus" class="btn btn-default">+</button>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<!--PLAYER 3-->
+  <div class="panel panel-default" id="player-three-div">
+    <div class="panel-heading">
+      <h3 class="panel-title">Player 3</h3>
+    </div>
+    <div class="panel-body">
+      <div class="form-horizontal">
+        <div class="form-group">
+          <label for="player3" class="col-xs-4 col-sm-2 control-label">Select Player</label>
+          <div class="col-xs-8 col-sm-10">
+            <select class="form-control" id="player3" name="playerThreeId">
+              {{ range .Players }}
+              <option value="{{ .Id }}">{{ .FirstName }} {{ .LastName }}</option>
+              {{ end }}
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="p3Character" class="col-xs-4 col-sm-2 control-label">Select Character</label>
+          <div class="col-xs-4 col-sm-8">
+            <select class="form-control" id="p3Character" name="characterThreeId">
+              {{ range .Characters }}
+              <option value="{{ .Id }}">{{ .Name }}</option>
+              {{ end }}
+            </select>
+          </div>
+          <div class="checkbox col-xs-4 col-sm-2">
+            <label>
+              <input type="checkbox" id="isP2Random"> Random
+              <input type="hidden" id="playerTwoRandom" name="isP2Random" value="false"/>
+            </label>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-xs-4 col-sm-2 control-label" for="p3Rank">Rank</label>
+          <div class="btn-group col-xs-8 col-sm-10" id="p3Rank" name="p3Rank">
+            <label class="radio-inline"><input type="radio" value="1" name="optradio3">1&nbsp;</label>
+            <label class="radio-inline"><input type="radio" value="2" name="optradio3">2&nbsp;</label>
+            <label class="radio-inline"><input type="radio" value="3" name="optradio3">3&nbsp;</label>
+            <label class="radio-inline"><input type="radio" value="4" name="optradio3">4&nbsp;</label>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="col-xs-12 col-sm-4">
+            <label class="control-label" for="p3Kills">Kills</label>
+            <div class="input-group input-group-md">
+              <span class="input-group-btn">
+                <button type="button" id="p3KillsMinus" class="btn btn-default">-</button>
+              </span>
+              <input type="text" class="form-control text-center" id="p3Kills" value="0" name="p3Kills">
+              <span class="input-group-btn">
+                <button type="button" id="p3KillsPlus" class="btn btn-default">+</button>
+              </span>
+            </div>
+          </div>
+          <div class="col-xs-12 col-sm-4">
+            <label class="control-label" for="p3Deaths">Deaths</label>
+            <div class="input-group input-group-md">
+              <span class="input-group-btn">
+                <button type="button" id="p3DeathsMinus" class="btn btn-default">-</button>
+              </span>
+              <input type="text" class="form-control text-center" id="p3Deaths" value="0" name="p3Deaths">
+              <span class="input-group-btn">
+                <button type="button" id="p3DeathsPlus" class="btn btn-default">+</button>
+              </span>
+            </div>
+          </div>
+          <div class="col-xs-12 col-sm-4">
+            <label class="control-label" for="p3SDs">Self-Destructs</label>
+            <div class="input-group input-group-md">
+              <span class="input-group-btn">
+                <button type="button" id="p3SDsMinus" class="btn btn-default">-</button>
+              </span>
+              <input type="text" class="form-control text-center" id="p3SDs" value="0" name="p3SDs">
+              <span class="input-group-btn">
+                <button type="button" id="p3SDsPlus" class="btn btn-default">+</button>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<!--PLAYER 4-->
+  <div class="panel panel-default" id="player-four-div">
+    <div class="panel-heading">
+      <h3 class="panel-title">Player 4</h3>
+    </div>
+    <div class="panel-body">
+      <div class="form-horizontal">
+        <div class="form-group">
+          <label for="player4" class="col-xs-4 col-sm-2 control-label">Select Player</label>
+          <div class="col-xs-8 col-sm-10">
+            <select class="form-control" id="player4" name="playerFourId">
+              {{ range .Players }}
+              <option value="{{ .Id }}">{{ .FirstName }} {{ .LastName }}</option>
+              {{ end }}
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="p4Character" class="col-xs-4 col-sm-2 control-label">Select Character</label>
+          <div class="col-xs-4 col-sm-8">
+            <select class="form-control" id="p4Character" name="characterFourId">
+              {{ range .Characters }}
+              <option value="{{ .Id }}">{{ .Name }}</option>
+              {{ end }}
+            </select>
+          </div>
+          <div class="checkbox col-xs-4 col-sm-2">
+            <label>
+              <input type="checkbox" id="isP4Random"> Random
+              <input type="hidden" id="playerFourRandom" name="isP4Random" value="false"/>
+            </label>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-xs-4 col-sm-2 control-label" for="p4Rank">Rank</label>
+          <div class="btn-group col-xs-8 col-sm-10" id="p4Rank" name="p4Rank">
+            <label class="radio-inline"><input type="radio" value="1" name="optradio4">1&nbsp;</label>
+            <label class="radio-inline"><input type="radio" value="2" name="optradio4">2&nbsp;</label>
+            <label class="radio-inline"><input type="radio" value="3" name="optradio4">3&nbsp;</label>
+            <label class="radio-inline"><input type="radio" value="4" name="optradio4">4&nbsp;</label>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="col-xs-12 col-sm-4">
+            <label class="control-label" for="p4Kills">Kills</label>
+            <div class="input-group input-group-md">
+              <span class="input-group-btn">
+                <button type="button" id="p4KillsMinus" class="btn btn-default">-</button>
+              </span>
+              <input type="text" class="form-control text-center" id="p4Kills" value="0" name="p4Kills">
+              <span class="input-group-btn">
+                <button type="button" id="p4KillsPlus" class="btn btn-default">+</button>
+              </span>
+            </div>
+          </div>
+          <div class="col-xs-12 col-sm-4">
+            <label class="control-label" for="p4Deaths">Deaths</label>
+            <div class="input-group input-group-md">
+              <span class="input-group-btn">
+                <button type="button" id="p4DeathsMinus" class="btn btn-default">-</button>
+              </span>
+              <input type="text" class="form-control text-center" id="p4Deaths" value="0" name="p4Deaths">
+              <span class="input-group-btn">
+                <button type="button" id="p4DeathsPlus" class="btn btn-default">+</button>
+              </span>
+            </div>
+          </div>
+          <div class="col-xs-12 col-sm-4">
+            <label class="control-label" for="p4SDs">Self-Destructs</label>
+            <div class="input-group input-group-md">
+              <span class="input-group-btn">
+                <button type="button" id="p4SDsMinus" class="btn btn-default">-</button>
+              </span>
+              <input type="text" class="form-control text-center" id="p4SDs" value="0" name="p4SDs">
+              <span class="input-group-btn">
+                <button type="button" id="p4SDsPlus" class="btn btn-default">+</button>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div style="margin-bottom:2em">
+    <button type="submit" class="btn btn-large btn-primary btn-block">Submit</button>
+  </div>
+</form>
+
+<link rel="stylesheet" type="text/css" href="/styles/new-game.css">
+
+<script type="text/javascript" src="/scripts/new-game.js"></script>
